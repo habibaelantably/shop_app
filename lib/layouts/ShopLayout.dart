@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/Network/local/cacheHelper.dart';
 import 'package:shop_app/components/reusable_components.dart';
+import 'package:shop_app/models/Favorites_model.dart';
 import 'package:shop_app/modules/Search/SearchScreen.dart';
-import 'package:shop_app/modules/login/loginScreen.dart';
 import 'package:shop_app/shared/cubit/ShopCubit.dart';
 import 'package:shop_app/shared/cubit/ShopStates.dart';
+import 'package:shop_app/styles/colors.dart';
 
 class shoplayoutScreen extends StatelessWidget
 {
@@ -17,9 +17,17 @@ class shoplayoutScreen extends StatelessWidget
       builder: (BuildContext context, state) {
         return  Scaffold(
             appBar: AppBar(
-              title: Text('Salla'),
+              backgroundColor: deafultColor,
+              title: Text('Salla',
+              style: TextStyle(
+                color: Colors.white
+              ),
+              ),
               actions: [
-                IconButton(onPressed: (){NavigateTo(context, SearchScreen());}, icon: Icon(Icons.search))
+                IconButton(
+                  onPressed: (){NavigateTo(context, SearchScreen());},
+                  icon: Icon(Icons.search),
+                  color: Colors.white,)
               ],
             ),
             body: cubit.bottomScreens[cubit.currentindex],

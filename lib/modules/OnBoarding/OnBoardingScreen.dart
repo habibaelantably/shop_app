@@ -42,9 +42,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   var controller=PageController();
 
   List<OnBoardingModel>boarding=[
-    OnBoardingModel(image: 'assets/images/first.png', title: 'OnBoarding 1', body: 'body 1'),
-    OnBoardingModel(image: 'assets/images/second.png', title: 'OnBoarding 2', body: 'body 2'),
-    OnBoardingModel(image: 'assets/images/third.png', title: 'OnBoarding 3', body: 'body 3'),
+    OnBoardingModel(image: 'assets/images/account.jpg', title: 'Sign up/in', body: 'Sign up and login to your account to see discounts and buy online'),
+    OnBoardingModel(image: 'assets/images/E-commerce_website4.jpg', title: 'online shoping', body: 'see the newest items and buy from your house'),
+    OnBoardingModel(image: 'assets/images/shoponline.jpg', title: 'save money', body: 'shop for all family and save more money by getting offers and discounts'),
   ];
 
 

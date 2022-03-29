@@ -40,7 +40,8 @@ dependencies:
   dots_indicator: ^2.0.0
   smooth_page_indicator: ^0.3.0-nullsafety.0
   fluttertoast: ^8.0.8
-  http:
+  carousel_slider: ^4.0.0
+
 
 
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/Network/local/cacheHelper.dart';
 import 'package:shop_app/Network/remote/DioHelper.dart';
+import 'package:shop_app/components/constants.dart';
 import 'package:shop_app/layouts/ShopLayout.dart';
 import 'package:shop_app/modules/OnBoarding/OnBoardingScreen.dart';
 import 'package:shop_app/shared/cubit/AppCubit.dart';
@@ -27,8 +28,8 @@ void main() async
 
   bool ? onBoarding = cacheHelper.getData(key: 'OnBoarding');
 
-  String ? token = cacheHelper.getData(key: 'token');
-
+  token = cacheHelper.getData(key: 'token');
+  print(token);
   if(onBoarding != null)
   {
     if(token != null)
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: ( BuildContext context)=> AppCubit()..changeAppMode(fromShared:isDark,)),
-        BlocProvider(create: (context)=>ShopAppcubit()..getHomeData())
+        BlocProvider(create: (context)=>ShopAppcubit()..getHomeData()..getCategoriesData()..getFavoritesData()..getUserData())
       ],
       child: BlocConsumer<AppCubit,AppStates>(
         builder: (BuildContext context, state) {

@@ -1,5 +1,5 @@
 
-import 'package:dio/dio.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class cacheHelper
@@ -51,6 +51,5 @@ static Future<bool> removeData({
 {
   return await sharedPreferences!.remove(key);
 }
-
 }
 

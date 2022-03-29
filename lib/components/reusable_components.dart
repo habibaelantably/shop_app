@@ -3,8 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shop_app/modules/login/loginScreen.dart';
-import 'package:shop_app/Network/local/cacheHelper.dart';
+import 'package:shop_app/styles/colors.dart';
 
 
 Widget deafultFormField ({
@@ -18,6 +17,7 @@ Widget deafultFormField ({
   bool IsPassword=false ,
   IconData ? suffix,
   Function ? suffixButton,
+  String? hint
 
 })=>  TextFormField(
   controller: controller,
@@ -40,9 +40,7 @@ Widget deafultFormField ({
           suffix
       ),
     ): null,
-
-
-
+    hintText: hint
 
   ),
 );
@@ -51,7 +49,7 @@ Widget deafultFormField ({
 
 Widget deafultbutton({
   double width=double.infinity,
-  Color background = Colors.blue,
+  Color background = deafultColor,
   bool IsUpperCase=true,
   double radius=0.0,
   required Function function,
@@ -93,8 +91,8 @@ void NavigateTo(context,widget) => Navigator.push(context,
 
 void NavigateAndKill(context,widget) => Navigator.pushAndRemoveUntil(context,
     MaterialPageRoute(
-        builder: (context)=> widget
-    ),(Route <dynamic> route){return false;});
+        builder: (context)=> widget),
+        (Route <dynamic> route){return false;});
 
 void showToast({
   required String text,

@@ -3,13 +3,14 @@ import 'package:buildcondition/buildcondition.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_app/Network/local/cacheHelper.dart';
+import 'package:shop_app/components/constants.dart';
 import 'package:shop_app/components/reusable_components.dart';
 import 'package:shop_app/layouts/ShopLayout.dart';
 import 'package:shop_app/modules/register/registerScreen.dart';
-import 'package:shop_app/shared/cubit/AppCubit.dart';
 import 'package:shop_app/shared/cubit/AppStates.dart';
+import 'package:shop_app/shared/cubit/ShopLoginCubit.dart';
+import 'package:shop_app/shared/cubit/ShopLoginStates.dart';
 
 
 class LoginScreen extends StatelessWidget
@@ -22,8 +23,8 @@ class LoginScreen extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => AppCubit(),
-      child: BlocConsumer<AppCubit,AppStates>(
+      create: (BuildContext context) => ShopAppLoginCubit(),
+      child: BlocConsumer<ShopAppLoginCubit,ShopAppLoginStates>(
         builder: (BuildContext context, state) {
           return Scaffold(
             appBar:AppBar(),
@@ -55,7 +56,7 @@ class LoginScreen extends StatelessWidget
                             validator: (value)
                             {
                               if(value!.isEmpty){
-                                return 'please enter emailaddress';
+                                return 'please enter email address';
                               }
                               return null;
                             },
@@ -73,25 +74,25 @@ class LoginScreen extends StatelessWidget
                               }
                               return null;
                             },
-                            IsPassword: AppCubit.get(context).isPassword,
+                            IsPassword: ShopAppLoginCubit.get(context).isPassword,
                             prefix: Icons.vpn_key,
-                            suffix: AppCubit.get(context).suffix,
+                            suffix: ShopAppLoginCubit.get(context).suffix,
                             suffixButton: ()
                             {
-                             AppCubit.get(context).changePasswordVisibility();
+                             ShopAppLoginCubit.get(context).changePasswordVisibility();
 
                             },
                             label: 'password'
                         ),
                         SizedBox(height: 20.0,),
                         BuildCondition(
-                          condition: state is! AppLoadingstate,
+                          condition: state is! ShopAppLoginLoadingState,
                           builder: (context)=>deafultbutton(
                               function:()
                               {
                                 if(formkey.currentState != null && formkey.currentState!.validate())
                                 {
-                                  AppCubit.get(context).userLogin(
+                                  ShopAppLoginCubit.get(context).userLogin(
                                       email: emailController.text,
                                       password: passwordController.text);
                               }
@@ -127,7 +128,7 @@ class LoginScreen extends StatelessWidget
         },
         listener: (BuildContext context, Object? state)
         {
-          if(state is AppSuccessState)
+          if(state is ShopAppLoginSuccessState)
           {
             if(state.loginModel.status==true)
             {
@@ -140,6 +141,8 @@ class LoginScreen extends StatelessWidget
                     value: state.loginModel.data!.token)
                     .then((value) {
                       if(value){
+
+                        token=state.loginModel.data!.token;
                         NavigateAndKill(context, shoplayoutScreen());
                       }
                 });

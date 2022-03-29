@@ -3,17 +3,14 @@
 class HomeModel
 {
   bool? status;
-  HomeDataModel? data;
+  late HomeDataModel data;
 
   HomeModel.fromJson(Map<String,dynamic>json)
   {
     status=json['status'];
     data=HomeDataModel.fromJson(json['data']);
   }
-
-
 }
-
 class HomeDataModel
 {
   List<BannersModel>banners=[];
@@ -21,13 +18,13 @@ class HomeDataModel
 
   HomeDataModel.fromJson(Map<String,dynamic>json)
   {
-   json['banners'].foreach((element){
-     banners.add(BannersModel.fromJson(element));
+   json['banners'].forEach((Element){
+     banners.add(BannersModel.fromJson(Element));
    });
 
-    json['products'].foreach((element)
+    json['products'].forEach((Element)
     {
-      products.add(ProductsModel.fromJson(element));
+      products.add(ProductsModel.fromJson(Element));
     });
   }
 }
